@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MaintenanceRoutingModule } from './maintenance-routing.module';
 import { AreaPageComponent } from './pages/area-page/area-page.component';
 import { ProfessionalPageComponent } from './pages/professional-page/professional-page.component';
 import { AppointmentTypePageComponent } from './pages/appointment-type-page/appointment-type-page.component';
-import { ClientPageComponent } from './pages/client-page/client-page.component';
 import { UserPageComponent } from './pages/user-page/user-page.component';
+import { ClientsTablePageComponent } from './pages/clients-table-page/clients-table-page.component';
+import { ClientFormPageComponent } from './pages/client-form-page/client-form-page.component';
 
 
 @NgModule({
@@ -14,12 +17,16 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
     AreaPageComponent,
     ProfessionalPageComponent,
     AppointmentTypePageComponent,
-    ClientPageComponent,
-    UserPageComponent
+    UserPageComponent,
+    ClientsTablePageComponent,
+    ClientFormPageComponent
   ],
   imports: [
     CommonModule,
-    MaintenanceRoutingModule
+    MaintenanceRoutingModule,
+    FormsModule,
+    NgbModule,
+    ReactiveFormsModule
   ]
 })
 export class MaintenanceModule { }
