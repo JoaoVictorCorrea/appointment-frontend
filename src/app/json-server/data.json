@@ -201,8 +201,8 @@
     {
       "id": 34,
       "name": "Adams Brewer",
-      "dateOfBirth": "2019-10-01",
-      "phone": "(87) 9532-2079"
+      "phone": "(87) 9532-2079",
+      "dateOfBirth": "2019-10-01"
     },
     {
       "id": 35,
@@ -541,12 +541,6 @@
       "phone": "(99) 0417-3520"
     },
     {
-      "id": 92,
-      "name": "Alana Knight",
-      "dateOfBirth": "2018-11-01",
-      "phone": "(91) 0505-2454"
-    },
-    {
       "id": 93,
       "name": "Janis Beck",
       "dateOfBirth": "2017-11-28",
@@ -605,6 +599,12 @@
       "name": "Tes",
       "phone": "11991136188",
       "dateOfBirth": "2024-04-17"
+    },
+    {
+      "id": 103,
+      "name": "Teste",
+      "phone": "11991136188",
+      "dateOfBirth": "2000-01-25"
     }
   ]
 }
