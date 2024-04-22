@@ -29,7 +29,7 @@
                     <td><a routerLink="/client-form/{{client.id}}">{{client.name}}</a> </td>
                     <td>{{client.phone}}</td>
                     <td>{{client.dateOfBirth | date : 'dd/MM/yyyy'}}</td>
-                    <td (click)="deleteClient(client)">
+                    <td (click)="deleteClient(client, modalConfirm)">
                         <img src="assets/svg/trash3-fill.svg" width="20" height="20" alt="next">
                     </td>
                 </tr>
@@ -39,3 +39,9 @@
         <ngb-pagination class="d-flex justify-content-center" [collectionSize]="clientPage.numberOfElements" [(page)]="page" [boundaryLinks]="true" (pageChange)="pageChange()"/>
     </div>
 </div>
+
+<app-modal #modalConfirm [title]="'Deseja remover o cliente?'">
+    <ng-container *ngIf="selectedClient">
+        Nome: <span class="fw-bold me-1">{{selectedClient.name}}</span>
+    </ng-container>
+</app-modal>
