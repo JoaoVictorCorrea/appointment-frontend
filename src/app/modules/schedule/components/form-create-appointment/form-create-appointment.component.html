@@ -1,0 +1,56 @@
+<form [formGroup]="appointmentForm" #ngAppointmentForm="ngForm">
+    <div class="mb-3">
+        Escolha uma área:
+        <select class="form-select" aria-label="Selecione uma área" formControlName="area" (change)="onAreaChanged()">
+            <option *ngFor="let area of areas" [ngValue]="area">
+                {{area.name}}
+            </option>
+        </select>
+        <div *ngIf="submited" class="text-start">
+            <small *ngIf="afArea?.errors?.['required']" class="form-text text-danger"><sup>*</sup>Selecione a Área do Profissional!</small>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        Escolha uma área para escolher um profissional:
+        <select class="form-select" aria-label="Selecione um Profissional" formControlName="professional">
+            <option *ngFor="let professional of professionals" [ngValue]="professional">
+                {{professional.name}}
+            </option>
+        </select>
+        <div *ngIf="submited" class="text-start">
+            <small *ngIf="afProfessional?.errors?.['required']" class="form-text text-danger"><sup>*</sup>Selecione o Profissional!</small>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        Tipo de Atendimento:
+        <select class="form-select" aria-label="Selecione um tipo de atendimento" formControlName="appointmentType">
+            <option *ngFor="let appointmentType of appointmentTypes" [ngValue]="appointmentType">
+                {{appointmentType.type}}
+            </option>
+        </select>
+        <div *ngIf="submited" class="text-start">
+            <small *ngIf="afAppointmentType?.errors?.['required']" class="form-text text-danger"><sup>*</sup>Selecione o Tipo do Agendamento!</small>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        Crie ou digite o nome do cliente:
+        <div class="input-group">
+            <input id="typeahead-basic" type="text" class="form-control" formControlName="client" [ngbTypeahead]="searchClients" 
+                   [resultFormatter]="formatter" [inputFormatter]="formatter"/>
+        </div>
+        <div *ngIf="getSelectedClient().phone" class="text-start">
+            <small>Confirme o telefone do cliente: {{getSelectedClient().phone}}</small>
+        </div>
+        <div *ngIf="submited" class="text-start">
+            <small *ngIf="afClient?.errors?.['required']" class="form-text text-danger"><sup>*</sup>Selecione o Cliente!</small>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        Comentários:
+        <textarea class="form-control" id="comments" formControlName="comments"></textarea>
+    </div>
+</form>
