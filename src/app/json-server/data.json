@@ -1,4 +1,19 @@
 {
+  "areas":[
+    {"id": 1, "name": "Clínico Geral"},
+    {"id": 2, "name": "Fisioterapeuta"},
+    {"id": 3, "name": "Cardiologista"}
+  ],
+  "professionals":[
+    {"id": 1, "name": "Dr. Fernando Souza", "phone": "(93) 4427-2977", "active": true, "areaId": "1"},
+    {"id": 2, "name": "Dra. Maria Lucia", "phone": "(95) 3539-2977", "active": true, "areaId": "2"},
+    {"id": 3, "name": "Dr. Marco Pereira", "phone": "(82) 4427-2617", "active": false, "areaId": "2"}
+  ],
+  "appointment-types":[
+    {"id": 1, "type": "Particular"},
+    {"id": 2, "type": "Convênio Dr. Saúde"},
+    {"id": 3, "type": "Convênio Prefeitura"}
+  ],
   "clients": [
     {
       "id": 1,

@@ -7,6 +7,9 @@ import { CreateAppointmentPageComponent } from './pages/create-appointment-page/
 import { CancelAppointmentPageComponent } from './pages/cancel-appointment-page/cancel-appointment-page.component';
 import { ClientHistoryPageComponent } from './pages/client-history-page/client-history-page.component';
 import { ProfessionalWorkdaysPageComponent } from './pages/professional-workdays-page/professional-workdays-page.component';
+import { FormCreateAppointmentComponent } from './components/form-create-appointment/form-create-appointment.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -15,11 +18,14 @@ import { ProfessionalWorkdaysPageComponent } from './pages/professional-workdays
     CreateAppointmentPageComponent,
     CancelAppointmentPageComponent,
     ClientHistoryPageComponent,
-    ProfessionalWorkdaysPageComponent
+    ProfessionalWorkdaysPageComponent,
+    FormCreateAppointmentComponent
   ],
   imports: [
     CommonModule,
-    ScheduleRoutingModule
+    ScheduleRoutingModule,
+    ReactiveFormsModule,
+    NgbModule
   ]
 })
 export class ScheduleModule { }
