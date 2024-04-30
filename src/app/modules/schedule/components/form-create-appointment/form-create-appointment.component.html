@@ -13,7 +13,7 @@
 
     <div class="mb-3">
         Escolha uma área para escolher um profissional:
-        <select class="form-select" aria-label="Selecione um Profissional" formControlName="professional">
+        <select class="form-select" aria-label="Selecione um Profissional" formControlName="professional" (change)="onProfessionalChanged()">
             <option *ngFor="let professional of professionals" [ngValue]="professional">
                 {{professional.name}}
             </option>

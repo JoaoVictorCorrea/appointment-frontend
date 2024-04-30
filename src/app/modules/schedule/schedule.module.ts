@@ -10,6 +10,7 @@ import { ProfessionalWorkdaysPageComponent } from './pages/professional-workdays
 import { FormCreateAppointmentComponent } from './components/form-create-appointment/form-create-appointment.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CancelAppointmentPageComponent,
     ClientHistoryPageComponent,
     ProfessionalWorkdaysPageComponent,
-    FormCreateAppointmentComponent
+    FormCreateAppointmentComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
