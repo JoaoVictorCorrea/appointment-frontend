@@ -8,6 +8,7 @@ import { AppointmentTypeService } from 'src/app/core/services/appointment-type.s
 import { AreaService } from 'src/app/core/services/area.service';
 import { ClientService } from 'src/app/core/services/client.service';
 import { FormCreateAppointmentComponent } from '../../components/form-create-appointment/form-create-appointment.component';
+import { ProfessionalService } from 'src/app/core/services/professional.service';
 
 @Component({
   selector: 'app-create-appointment-page',
@@ -19,17 +20,44 @@ export class CreateAppointmentPageComponent implements OnInit {
   areas: Area[] = [];
   appointmentTypes: AppointmentType[] = [];
   professionalsByArea: Professional[] = [];
+  selectedProfessional: Professional = {} as Professional;
+
+  //Calendar Component
+  calendarMonth: Date = new Date();
+  availableDays: number[] = [];
 
   @ViewChild(FormCreateAppointmentComponent)
   private formCreateAppointmentComponent !: FormCreateAppointmentComponent;
 
   constructor(private areaService: AreaService,
               private appointmentTypeService: AppointmentTypeService,
-              private clientService: ClientService) { }
+              private clientService: ClientService,
+              private professionalService: ProfessionalService) { }
 
   ngOnInit(): void {
     this.loadAreas();
     this.loadAppointmentTypes();
+  }
+
+  onSelectedProfessional(professional: Professional) {
+    this.selectedProfessional = professional;
+    this.calendarMonth = new Date();
+    this.loadAvailableDays();
+  }
+
+  onSelectedDate(date: Date) {
+    alert(date);
+  }
+
+  onChangedMonth(date: Date) {
+    this.calendarMonth = date;
+    this.loadAvailableDays();
+  }
+
+  loadAvailableDays() {
+    this.professionalService.getAvailableDays(this.selectedProfessional, this.calendarMonth).subscribe({
+      next: days => this.availableDays = days
+    });
   }
 
   searchClients = (text: Observable<string>): Observable<Client[]> => {

@@ -28,6 +28,9 @@ export class FormCreateAppointmentComponent {
   @Output()
   selectedAreaEvent = new EventEmitter<Area>();
 
+  @Output()
+  selectedProfessionalEvent = new EventEmitter<Professional>();
+
   submited: boolean = false;
 
   appointmentForm: FormGroup;
@@ -44,6 +47,10 @@ export class FormCreateAppointmentComponent {
 
   //Used by typeahead component
   formatter = (client: Client) => client.name;
+
+  onProfessionalChanged() {
+    this.selectedProfessionalEvent.emit(this.appointmentForm.value["professional"]);
+  }
 
   onAreaChanged() {
     this.selectedAreaEvent.emit(this.appointmentForm.value["area"]);

@@ -4,12 +4,15 @@
         <div class="col-6 border rounded shadow-sm p-4">
             <app-form-create-appointment [areas]="areas" (selectedAreaEvent)="onSelectedArea($event)"
                                          [appointmentTypes]="appointmentTypes"
-                                         [professionals]="professionalsByArea"
+                                         [professionals]="professionalsByArea" (selectedProfessionalEvent)="onSelectedProfessional($event)"
                                          [searchClients]="searchClients">
             </app-form-create-appointment>
         </div>
         <div class="col-6 border rounded shadow-sm p-4">
-            <div id="calendar"></div>
+            <app-calendar [calendarMonth]="calendarMonth"
+                          [availableDays]="availableDays"
+                          (changedMonthEvent)="onChangedMonth($event)"
+                          (selectedDateEvent)="onSelectedDate($event)"></app-calendar>
             <div id="time"></div>
         </div>
     </div>
