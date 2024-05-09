@@ -12,8 +12,11 @@
             <app-calendar [calendarMonth]="calendarMonth"
                           [availableDays]="availableDays"
                           (changedMonthEvent)="onChangedMonth($event)"
-                          (selectedDateEvent)="onSelectedDate($event)"></app-calendar>
-            <div id="time"></div>
+                          (selectedDateEvent)="onSelectedDate($event)">
+            </app-calendar>
+            <app-time [times]="availableTimes"
+                      (selectedTimeEvent)="onSelectedTime($event)">
+            </app-time>
         </div>
     </div>
     <div class="d-grid gap-2 mt-2 px-5">

@@ -11,6 +11,8 @@ import { FormCreateAppointmentComponent } from './components/form-create-appoint
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { TimeComponent } from './components/time/time.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -21,13 +23,15 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     ClientHistoryPageComponent,
     ProfessionalWorkdaysPageComponent,
     FormCreateAppointmentComponent,
-    CalendarComponent
+    CalendarComponent,
+    TimeComponent
   ],
   imports: [
     CommonModule,
     ScheduleRoutingModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    SharedModule
   ]
 })
 export class ScheduleModule { }

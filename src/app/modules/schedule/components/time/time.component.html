@@ -1,0 +1,13 @@
+<div class="text-center">
+    Horários Disponíveis:
+    <div class="row" *ngFor="let row of [0, 1]">
+        <div class="col time" [ngClass]="{'time-off': !timeOfDay.available,
+                                          'time-available': timeOfDay.available,
+                                          'time-selected': timeOfDay.startTime === selectedTime.startTime}"
+            *ngFor="let timeOfDay of times.slice(row * 8, (row + 1) * 8)" 
+            (click)="timeOfDay.available && onSelectedTime(timeOfDay)"
+         >
+            {{timeOfDay.startTime | time}}
+        </div>
+    </div>
+</div>

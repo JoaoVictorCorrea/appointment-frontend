@@ -7,7 +7,8 @@
   "professionals":[
     {"id": 1, "name": "Dr. Fernando Souza", "phone": "(93) 4427-2977", "active": true, "areaId": "1"},
     {"id": 2, "name": "Dra. Maria Lucia", "phone": "(95) 3539-2977", "active": true, "areaId": "2"},
-    {"id": 3, "name": "Dr. Marco Pereira", "phone": "(82) 4427-2617", "active": false, "areaId": "2"}
+    {"id": 3, "name": "Dr. Marco Pereira", "phone": "(82) 4427-2617", "active": false, "areaId": "2"},
+    {"id": 4, "name": "Dr. Luciano Borges", "phone": "(82) 1426-2617", "active": true, "areaId": "2"}
   ],
   "appointment-types":[
     {"id": 1, "type": "Particular"},
