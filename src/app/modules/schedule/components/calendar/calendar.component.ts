@@ -31,8 +31,10 @@ export class CalendarComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.selectedDay = 0;
-    this.loadCalendar();
+    if (changes.hasOwnProperty("availableDays")) {
+      this.selectedDay = 0;
+      this.loadCalendar();
+    }
   }
 
   onSelectedDay(day: number) {

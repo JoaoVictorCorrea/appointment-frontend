@@ -24,10 +24,12 @@ export class TimeComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.selectedTime = {} as Time;
+    if (changes.hasOwnProperty("times")) {
+      this.selectedTime = {} as Time;
 
-    if (this.times.length === 0) {
-      this.resetTimes();
+      if (this.times.length === 0) {
+        this.resetTimes();
+      }
     }
   }
 
