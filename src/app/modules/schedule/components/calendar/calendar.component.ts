@@ -14,6 +14,9 @@ export class CalendarComponent implements OnInit, OnChanges {
   @Input()
   availableDays: number[] = [];
 
+  @Input()
+  error: string = "";
+
   @Output()
   changedMonthEvent = new EventEmitter<Date>;
 

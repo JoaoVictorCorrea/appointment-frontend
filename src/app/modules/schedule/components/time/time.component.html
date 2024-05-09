@@ -10,4 +10,8 @@
             {{timeOfDay.startTime | time}}
         </div>
     </div>
+
+    <div *ngIf="error" class="text-start">
+        <small class="form-text text-danger">{{error}}</small>
+    </div>
 </div>
