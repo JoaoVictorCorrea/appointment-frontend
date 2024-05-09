@@ -11,6 +11,9 @@ import { FormCreateAppointmentComponent } from '../../components/form-create-app
 import { ProfessionalService } from 'src/app/core/services/professional.service';
 import { Time } from '../../components/time/models/time';
 import { Appointment } from 'src/app/core/models/appointment';
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { AppointmentService } from 'src/app/core/services/appointment.service';
+import { ToastService } from 'src/app/core/services/toast.service';
 
 @Component({
   selector: 'app-create-appointment-page',
@@ -23,15 +26,18 @@ export class CreateAppointmentPageComponent implements OnInit {
   appointmentTypes: AppointmentType[] = [];
   professionalsByArea: Professional[] = [];
   selectedProfessional: Professional = {} as Professional;
+  appointment !: Appointment;
 
   //Calendar Component
   calendarMonth: Date = new Date();
   availableDays: number[] = [];
   selectedDate !: Date;
+  calendarError: string = "";
 
   //Time Component
   availableTimes: Time[] = [];
   selectedTime !: Time;
+  timeError: string = "";
 
   @ViewChild(FormCreateAppointmentComponent)
   private formCreateAppointmentComponent !: FormCreateAppointmentComponent;
@@ -39,7 +45,9 @@ export class CreateAppointmentPageComponent implements OnInit {
   constructor(private areaService: AreaService,
               private appointmentTypeService: AppointmentTypeService,
               private clientService: ClientService,
-              private professionalService: ProfessionalService) { }
+              private professionalService: ProfessionalService,
+              private appointmentService: AppointmentService,
+              private toastService: ToastService) { }
 
   ngOnInit(): void {
     this.loadAreas();
@@ -112,9 +120,37 @@ export class CreateAppointmentPageComponent implements OnInit {
     this.availableTimes = [];
   }
 
-  createAppointment() {
-    this.formCreateAppointmentComponent.submited = true;
+  clean() {
+    this.formCreateAppointmentComponent.cleanForm();
+    this.availableDays = [];
+    this.availableTimes = [];
+    this.appointment = {} as Appointment;
+  }
 
+  createAppointment(modalConfirm: ModalComponent) {
+    this.formCreateAppointmentComponent.submited = true;
+    this.checkDateAndTimeErrors();
+
+    if (this.isAppointmentValid()) {
+      this.appointment = this.createAppointmentObject();
+
+      modalConfirm.open({ size: "lg" }).then(confirm => {
+        if (confirm) {
+          this.appointmentService.save(this.appointment).subscribe({
+            next: () => {
+              this.toastService.show("Agendamento Criado com sucesso!", { classname: "bg-success text-light" });
+              this.clean();
+            },
+            error: () => {
+              this.toastService.show("Erro ao Fazer o Agendamento!", { classname: "bg-danger text-light" })
+            }
+          })
+        }
+      });
+    }
+  }
+
+  private createAppointmentObject(): Appointment{
     let appointment: Appointment = {} as Appointment;
     
     appointment = { ... this.formCreateAppointmentComponent.appointmentForm.value };
@@ -122,6 +158,20 @@ export class CreateAppointmentPageComponent implements OnInit {
     appointment.endTime = this.selectedTime.endTime;
     appointment.date = this.selectedDate;
 
-    console.log(appointment);
+    return appointment;
+  }
+
+  private checkDateAndTimeErrors(): void{
+    if (!this.selectedDate) {
+      this.calendarError = "*Selecione uma data!";
+    }
+
+    if (!this.selectedTime) {
+      this.timeError = "*Selecione um horário!";
+    }
+  }
+
+  private isAppointmentValid(): boolean{
+    return !!(this.formCreateAppointmentComponent.appointmentForm.valid && this.selectedDate && this.selectedTime);
   }
 }

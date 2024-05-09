@@ -3,24 +3,58 @@
         <div class="display-6 my-2">Fazer um agendamento:</div>
         <div class="col-6 border rounded shadow-sm p-4">
             <app-form-create-appointment [areas]="areas" (selectedAreaEvent)="onSelectedArea($event)"
-                                         [appointmentTypes]="appointmentTypes"
-                                         [professionals]="professionalsByArea" (selectedProfessionalEvent)="onSelectedProfessional($event)"
-                                         [searchClients]="searchClients">
+                [appointmentTypes]="appointmentTypes" [professionals]="professionalsByArea"
+                (selectedProfessionalEvent)="onSelectedProfessional($event)" [searchClients]="searchClients">
             </app-form-create-appointment>
         </div>
         <div class="col-6 border rounded shadow-sm p-4">
-            <app-calendar [calendarMonth]="calendarMonth"
-                          [availableDays]="availableDays"
-                          (changedMonthEvent)="onChangedMonth($event)"
-                          (selectedDateEvent)="onSelectedDate($event)">
+            <app-calendar [calendarMonth]="calendarMonth" [availableDays]="availableDays" [error]="calendarError"
+                (changedMonthEvent)="onChangedMonth($event)" (selectedDateEvent)="onSelectedDate($event)">
             </app-calendar>
-            <app-time [times]="availableTimes"
-                      (selectedTimeEvent)="onSelectedTime($event)">
+            <app-time [times]="availableTimes" [error]="timeError" (selectedTimeEvent)="onSelectedTime($event)">
             </app-time>
         </div>
     </div>
     <div class="d-grid gap-2 mt-2 px-5">
         <button type="button" class="btn btn-primary shadow-sm" type="button" data-bs-toggle="modal"
-            data-bs-target="#confirmModal" (click)="createAppointment()">Agendar</button>
+            data-bs-target="#confirmModal" (click)="createAppointment(modalConfirm)">Agendar
+        </button>
     </div>
 </div>
+
+<app-modal #modalConfirm [title]="'Confirmar Agendamento?'">
+    <ng-container *ngIf="appointment">
+        <div class="alert alert-secondary">
+            <div class="row">
+                <div class="col-2">Cliente:</div>
+                <div class="col-10 fw-bold">{{appointment.client && appointment.client.name}}</div>
+            </div>
+            <div class="row">
+                <div class="col-2">Data:</div>
+                <div class="col-10 fw-bold">{{appointment.date | date: "dd/MM/yyyy"}}</div>
+            </div>
+            <div class="row">
+                <div class="col-2">Horário:</div>
+                <div class="col-10 fw-bold">{{appointment.startTime}}</div>
+            </div>
+        </div>
+        <div class="alert alert-secondary">
+            <div class="row">
+                <div class="col-2">Área:</div>
+                <div class="col-10 fw-bold">{{appointment.area && appointment.area.name}}</div>
+            </div>
+            <div class="row">
+                <div class="col-2">Profissional</div>
+                <div class="col-10 fw-bold">{{appointment.professional && appointment.professional.name}}</div>
+            </div>
+            <div class="row">
+                <div class="col-2">Tipo:</div>
+                <div class="col-10 fw-bold">{{appointment.type && appointment.type.type}}</div>
+            </div>
+            <div class="row">
+                <div class="col-2">Comentários:</div>
+                <div class="col-10 fw-bold">{{appointment.comments}}</div>
+            </div>
+        </div>
+    </ng-container>
+</app-modal>

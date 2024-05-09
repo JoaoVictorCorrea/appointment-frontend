@@ -25,7 +25,7 @@
 
     <div class="mb-3">
         Tipo de Atendimento:
-        <select class="form-select" aria-label="Selecione um tipo de atendimento" formControlName="appointmentType">
+        <select class="form-select" aria-label="Selecione um tipo de atendimento" formControlName="type">
             <option *ngFor="let appointmentType of appointmentTypes" [ngValue]="appointmentType">
                 {{appointmentType.type}}
             </option>
@@ -41,7 +41,7 @@
             <input id="typeahead-basic" type="text" class="form-control" formControlName="client" [ngbTypeahead]="searchClients" 
                    [resultFormatter]="formatter" [inputFormatter]="formatter"/>
         </div>
-        <div *ngIf="getSelectedClient().phone" class="text-start">
+        <div *ngIf="getSelectedClient()" class="text-start">
             <small>Confirme o telefone do cliente: {{getSelectedClient().phone}}</small>
         </div>
         <div *ngIf="submited" class="text-start">
