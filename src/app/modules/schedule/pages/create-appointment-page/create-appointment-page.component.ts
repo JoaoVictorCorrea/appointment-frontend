@@ -56,6 +56,7 @@ export class CreateAppointmentPageComponent implements OnInit {
 
   onSelectedTime(time: Time) {
     this.selectedTime = time;
+    this.timeError = "";
   }
 
   loadAvailableTimes() {
@@ -73,6 +74,7 @@ export class CreateAppointmentPageComponent implements OnInit {
 
   onSelectedDate(date: Date) {
     this.selectedDate = date;
+    this.calendarError = "";
     this.loadAvailableTimes();
   }
 
