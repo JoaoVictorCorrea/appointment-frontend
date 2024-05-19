@@ -1,0 +1,39 @@
+<div class="container text-center">
+    <div class="display-6 my-2">
+        Cadastro de Profissionais:
+    </div>
+    <div class="border rounded shadow-sm p-4">
+        <div class="text-end">
+            <a routerLink="/professional-form" class="btn btn-primary">Novo</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome </th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Ativo</th>
+                    <th scope="col">Remover</th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"><input class="form-control" placeholder="Filtrar pelo nome" [(ngModel)]="filter" (keyup)="filterName()"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let professional of professionals">
+                    <th scope="row">{{professional.id}}</th>
+                    <td><a routerLink="/professional-form/{{professional.id}}">{{professional.name}}</a> </td>
+                    <td>{{professional.phone}}</td>
+                    <td>{{professional.active | active}}</td>
+                    <td (click)="deleteProfessional(professional)">
+                        <img src="assets/svg/trash3-fill.svg" width="20" height="20" alt="next">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

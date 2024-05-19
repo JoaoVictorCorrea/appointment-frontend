@@ -56,4 +56,17 @@ export class ProfessionalService {
       { startTime: "17:30:00", endTime: "18:00:00", available: Math.random() >= 0.5 }
     ]);
   }
+
+  getProfessionals(professionalNameFilter: string): Observable<Professional[]>{
+
+    let url = `${this.baseUrl}?name_like=${professionalNameFilter}`;
+    
+    return this.http.get<Professional[]>(url);
+  }
+
+  deleteProfessional(professional: Professional): Observable<void> {
+    let url = `${this.baseUrl}/${professional.id}`;
+    
+    return this.http.delete<void>(url);
+  }
 }

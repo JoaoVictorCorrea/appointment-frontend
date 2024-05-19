@@ -6,13 +6,15 @@ import { RouterModule } from '@angular/router';
 import { ToastComponent } from './components/toast/toast.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { TimePipe } from './pipes/time.pipe';
+import { ActivePipe } from './pipes/active.pipe';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     ToastComponent,
     ModalComponent,
-    TimePipe
+    TimePipe,
+    ActivePipe
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { TimePipe } from './pipes/time.pipe';
     HeaderComponent,
     ToastComponent,
     ModalComponent,
-    TimePipe
+    TimePipe,
+    ActivePipe
   ]
 })
 export class SharedModule { }
