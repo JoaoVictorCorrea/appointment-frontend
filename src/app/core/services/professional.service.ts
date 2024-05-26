@@ -13,6 +13,35 @@ export class ProfessionalService {
 
   constructor(private http: HttpClient) { }
 
+  getProfessionals(professionalNameFilter: string, page: number): Observable<HttpResponse<Professional[]>>{
+
+    let url = `${this.baseUrl}?name_like=${professionalNameFilter}&_page=${page}&_limit=10&_sort=name`;
+    
+    return this.http.get<Professional[]>(url, {observe: 'response'});
+  }
+
+  getProfessionalById(id: number): Observable<Professional>{
+    let url = `${this.baseUrl}/${id}`;
+
+    return this.http.get<Professional>(url);
+  }
+
+  save(professional: Professional): Observable<void>{
+    return this.http.post<void>(this.baseUrl, professional);
+  }
+
+  update(professional: Professional): Observable<void>{
+    let url = `${this.baseUrl}/${professional.id}`;
+
+    return this.http.put<void>(url, professional);
+  }
+
+  deleteProfessional(professional: Professional): Observable<void> {
+    let url = `${this.baseUrl}/${professional.id}`;
+    
+    return this.http.delete<void>(url);
+  }
+
   getAvailableDays(professional: Professional, calendar: Date): Observable<number[]>{
     let month = calendar.getMonth() + 1;
     let year = calendar.getFullYear();
@@ -55,18 +84,5 @@ export class ProfessionalService {
       { startTime: "17:00:00", endTime: "17:30:00", available: Math.random() >= 0.5 },
       { startTime: "17:30:00", endTime: "18:00:00", available: Math.random() >= 0.5 }
     ]);
-  }
-
-  getProfessionals(professionalNameFilter: string, page: number): Observable<HttpResponse<Professional[]>>{
-
-    let url = `${this.baseUrl}?name_like=${professionalNameFilter}&_page=${page}&_limit=10&_sort=name`;
-    
-    return this.http.get<Professional[]>(url, {observe: 'response'});
-  }
-
-  deleteProfessional(professional: Professional): Observable<void> {
-    let url = `${this.baseUrl}/${professional.id}`;
-    
-    return this.http.delete<void>(url);
   }
 }

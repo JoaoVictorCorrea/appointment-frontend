@@ -195,6 +195,34 @@
       "endTime": "18:00:00",
       "date": "2024-05-08T03:00:00.000Z",
       "id": 7
+    },
+    {
+      "area": {
+        "id": 3,
+        "name": "Cardiologista"
+      },
+      "professional": {
+        "id": 4,
+        "name": "Dr. Teste",
+        "phone": "(82) 1426-2617",
+        "active": true,
+        "areaId": 3
+      },
+      "type": {
+        "id": 1,
+        "type": "Particular"
+      },
+      "client": {
+        "id": 101,
+        "name": "João Victor",
+        "phone": "12112",
+        "dateOfBirth": "2003-01-25"
+      },
+      "comments": "Teste",
+      "startTime": "08:00:00",
+      "endTime": "08:30:00",
+      "date": "2024-05-18T03:00:00.000Z",
+      "id": 8
     }
   ],
   "areas": [
@@ -217,14 +245,14 @@
       "name": "Dr. Fernando Souza",
       "phone": "(93) 4427-2977",
       "active": true,
-      "areaId": "1"
+      "areaId": 1
     },
     {
       "id": 2,
       "name": "Dra. Maria Lucia",
       "phone": "(95) 3539-2977",
       "active": true,
-      "areaId": "2"
+      "areaId": 2
     },
     {
       "id": 3,
@@ -235,59 +263,10 @@
     },
     {
       "id": 4,
-      "name": "Dr. Jorge Farina",
+      "name": "Dr. Testando",
       "phone": "(82) 1426-2617",
       "active": false,
-      "areaId": "1"
-    },
-    {
-      "id": 5,
-      "name": "Dr. Luciana Borges",
-      "phone": "(82) 1426-2617",
-      "active": true,
-      "areaId": "1"
-    },
-    {
-      "id": 6,
-      "name": "Dr. Indio Manaus",
-      "phone": "(82) 1426-2617",
-      "active": true,
-      "areaId": "3"
-    },
-    {
-      "id": 7,
-      "name": "Dr. Matheus Machado",
-      "phone": "(82) 1426-2617",
-      "active": true,
-      "areaId": "2"
-    },
-    {
-      "id": 8,
-      "name": "Dr. João Bosco",
-      "phone": "(82) 1426-2617",
-      "active": true,
-      "areaId": "1"
-    },
-    {
-      "id": 9,
-      "name": "Dr. Jonas Andrade",
-      "phone": "(82) 1426-2617",
-      "active": true,
-      "areaId": "2"
-    },
-    {
-      "id": 10,
-      "name": "Dr. Matias Borges",
-      "phone": "(82) 1426-2617",
-      "active": true,
-      "areaId": "3"
-    },
-    {
-      "id": 11,
-      "name": "Dr. Marta Mariana",
-      "phone": "(82) 1426-2617",
-      "active": true,
-      "areaId": "1"
+      "areaId": 2
     }
   ],
   "appointment-types": [

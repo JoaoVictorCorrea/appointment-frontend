@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'area', component: AreaPageComponent },
   { path: 'professionals-table', component: ProfessionalsTablePageComponent },
   { path: 'professional-form', component: ProfessionalFormPageComponent },
+  { path: 'professional-form/:id', component: ProfessionalFormPageComponent},
   { path: 'appointment-type', component: AppointmentTypePageComponent },
   { path: 'clients-table', component: ClientsTablePageComponent },
   { path: 'client-form', component: ClientFormPageComponent },
