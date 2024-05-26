@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Professional } from '../models/professional';
 import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Time } from 'src/app/modules/schedule/components/time/models/time';
 
 @Injectable({
@@ -57,11 +57,11 @@ export class ProfessionalService {
     ]);
   }
 
-  getProfessionals(professionalNameFilter: string): Observable<Professional[]>{
+  getProfessionals(professionalNameFilter: string, page: number): Observable<HttpResponse<Professional[]>>{
 
-    let url = `${this.baseUrl}?name_like=${professionalNameFilter}`;
+    let url = `${this.baseUrl}?name_like=${professionalNameFilter}&_page=${page}&_limit=10&_sort=name`;
     
-    return this.http.get<Professional[]>(url);
+    return this.http.get<Professional[]>(url, {observe: 'response'});
   }
 
   deleteProfessional(professional: Professional): Observable<void> {

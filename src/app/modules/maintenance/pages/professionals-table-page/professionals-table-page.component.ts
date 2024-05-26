@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Page } from 'src/app/core/models/page';
 import { Professional } from 'src/app/core/models/professional';
 import { ProfessionalService } from 'src/app/core/services/professional.service';
 
@@ -11,6 +12,9 @@ export class ProfessionalsTablePageComponent implements OnInit {
 
   constructor(private professionalService: ProfessionalService) { }
 
+  professionalPage: Page<Professional> = {} as Page<Professional>;
+  page = 1;
+
   professionals: Professional[] = [];
 
   filter: string = "";
@@ -20,9 +24,16 @@ export class ProfessionalsTablePageComponent implements OnInit {
   }
 
   loadProfessionals() {
-    this.professionalService.getProfessionals(this.filter).subscribe({
-      next: professionals => this.professionals = professionals
+    this.professionalService.getProfessionals(this.filter, this.page).subscribe({
+      next: response => {
+        this.professionalPage.content = response.body;
+        this.professionalPage.numberOfElements = parseInt(response.headers.get("X-Total-Count") || "0");
+      }
     });
+  }
+
+  pageChange() {
+    this.loadProfessionals();
   }
 
   filterName() {

@@ -227,11 +227,67 @@
       "areaId": "2"
     },
     {
-      "id": 4,
+      "id": 3,
       "name": "Dr. Luciano Borges",
       "phone": "(82) 1426-2617",
       "active": true,
       "areaId": "2"
+    },
+    {
+      "id": 4,
+      "name": "Dr. Jorge Farina",
+      "phone": "(82) 1426-2617",
+      "active": false,
+      "areaId": "1"
+    },
+    {
+      "id": 5,
+      "name": "Dr. Luciana Borges",
+      "phone": "(82) 1426-2617",
+      "active": true,
+      "areaId": "1"
+    },
+    {
+      "id": 6,
+      "name": "Dr. Indio Manaus",
+      "phone": "(82) 1426-2617",
+      "active": true,
+      "areaId": "3"
+    },
+    {
+      "id": 7,
+      "name": "Dr. Matheus Machado",
+      "phone": "(82) 1426-2617",
+      "active": true,
+      "areaId": "2"
+    },
+    {
+      "id": 8,
+      "name": "Dr. João Bosco",
+      "phone": "(82) 1426-2617",
+      "active": true,
+      "areaId": "1"
+    },
+    {
+      "id": 9,
+      "name": "Dr. Jonas Andrade",
+      "phone": "(82) 1426-2617",
+      "active": true,
+      "areaId": "2"
+    },
+    {
+      "id": 10,
+      "name": "Dr. Matias Borges",
+      "phone": "(82) 1426-2617",
+      "active": true,
+      "areaId": "3"
+    },
+    {
+      "id": 11,
+      "name": "Dr. Marta Mariana",
+      "phone": "(82) 1426-2617",
+      "active": true,
+      "areaId": "1"
     }
   ],
   "appointment-types": [

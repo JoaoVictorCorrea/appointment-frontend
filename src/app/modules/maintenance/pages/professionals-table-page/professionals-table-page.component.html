@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let professional of professionals">
+                <tr *ngFor="let professional of professionalPage.content">
                     <th scope="row">{{professional.id}}</th>
                     <td><a routerLink="/professional-form/{{professional.id}}">{{professional.name}}</a> </td>
                     <td>{{professional.phone}}</td>
@@ -35,5 +35,7 @@
                 </tr>
             </tbody>
         </table>
+
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="professionalPage.numberOfElements" [(page)]="page" [boundaryLinks]="true" (pageChange)="pageChange()"/>
     </div>
 </div>
