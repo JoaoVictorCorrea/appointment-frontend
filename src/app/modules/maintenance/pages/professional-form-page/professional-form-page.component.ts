@@ -6,6 +6,7 @@ import { Area } from 'src/app/core/models/area';
 import { Professional } from 'src/app/core/models/professional';
 import { AreaService } from 'src/app/core/services/area.service';
 import { ProfessionalService } from 'src/app/core/services/professional.service';
+import { ToastService } from 'src/app/core/services/toast.service';
 
 @Component({
   selector: 'app-professional-form-page',
@@ -23,7 +24,8 @@ export class ProfessionalFormPageComponent implements OnInit {
               private professionalService: ProfessionalService,
               private areaService: AreaService,
               private location: Location,
-              private router: ActivatedRoute) {
+              private router: ActivatedRoute,
+              private toastService: ToastService) {
     this.professionalForm = this.formBuilder.group({
       id: [''],
       name: ['', Validators.required],
@@ -56,7 +58,7 @@ export class ProfessionalFormPageComponent implements OnInit {
   loadProfessional(professionalId: number) {
     this.professionalService.getProfessionalById(professionalId).subscribe({
       next: professional => this.professionalForm.setValue(professional),
-      error: () => alert("Erro ao carregar um cliente")
+      error: () => alert("Erro ao carregar um profissional")
     })
   }
 
@@ -66,8 +68,10 @@ export class ProfessionalFormPageComponent implements OnInit {
         this.professionalService.update(this.professionalForm.value).subscribe(
           {
             next: () => { 
+              this.toastService.show("Profissional Atualizado com sucesso!", { classname: "bg-success text-light" });
               this.location.back();
-            }
+            },
+            error: () => this.toastService.show("Erro ao Salvar o profissional!", { classname: "bg-danger text-light" })
           }
         );
       }
@@ -78,8 +82,10 @@ export class ProfessionalFormPageComponent implements OnInit {
         this.professionalService.save(newProfessional).subscribe(
           {
             next: () => {
+              this.toastService.show("Profissional Salvo com sucesso!", { classname: "bg-success text-light" });
               this.location.back();
-            }
+            },
+            error: () => this.toastService.show("Erro ao Criar o profissional!", { classname: "bg-danger text-light" })
           }
         );
       }

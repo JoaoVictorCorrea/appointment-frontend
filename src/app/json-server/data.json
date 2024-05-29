@@ -266,7 +266,56 @@
       "name": "Dr. Testando",
       "phone": "(82) 1426-2617",
       "active": false,
+      "areaId": 3
+    },
+    {
+      "id": 5,
+      "name": "Dr. Mário Andrade",
+      "phone": "(82) 1426-2617",
+      "active": true,
+      "areaId": 1
+    },
+    {
+      "id": 6,
+      "name": "Dra. Marina Lurdes",
+      "phone": "(82) 1426-2617",
+      "active": true,
       "areaId": 2
+    },
+    {
+      "id": 7,
+      "name": "Dr. Alberto Valentim",
+      "phone": "(82) 1426-2617",
+      "active": false,
+      "areaId": 3
+    },
+    {
+      "id": 8,
+      "name": "Dra. Marta da Silva",
+      "phone": "(82) 1426-2617",
+      "active": true,
+      "areaId": 1
+    },
+    {
+      "id": 9,
+      "name": "Dr. Yuri Alberto",
+      "phone": "(82) 1426-2617",
+      "active": true,
+      "areaId": 2
+    },
+    {
+      "id": 10,
+      "name": "Dra. Aline Correa",
+      "phone": "(82) 1426-2617",
+      "active": true,
+      "areaId": 3
+    },
+    {
+      "id": 11,
+      "name": "Dr. Cássio Ramos",
+      "phone": "(82) 1426-2617",
+      "active": false,
+      "areaId": 1
     }
   ],
   "appointment-types": [

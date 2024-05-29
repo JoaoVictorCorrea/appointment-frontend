@@ -29,7 +29,7 @@
                     <td><a routerLink="/professional-form/{{professional.id}}">{{professional.name}}</a> </td>
                     <td>{{professional.phone}}</td>
                     <td>{{professional.active | active}}</td>
-                    <td (click)="deleteProfessional(professional)">
+                    <td (click)="deleteProfessional(professional, modalConfirm)">
                         <img src="assets/svg/trash3-fill.svg" width="20" height="20" alt="next">
                     </td>
                 </tr>
@@ -39,3 +39,9 @@
         <ngb-pagination class="d-flex justify-content-center" [collectionSize]="professionalPage.numberOfElements" [(page)]="page" [boundaryLinks]="true" (pageChange)="pageChange()"/>
     </div>
 </div>
+
+<app-modal #modalConfirm [title]="'Deseja remover o profissional?'">
+    <ng-container *ngIf="selectedProfessional">
+        Nome: <span class="fw-bold me-1">{{selectedProfessional.name}}</span>
+    </ng-container>
+</app-modal>
