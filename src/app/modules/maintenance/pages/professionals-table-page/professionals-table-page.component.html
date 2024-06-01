@@ -1,0 +1,47 @@
+<div class="container text-center">
+    <div class="display-6 my-2">
+        Cadastro de Profissionais:
+    </div>
+    <div class="border rounded shadow-sm p-4">
+        <div class="text-end">
+            <a routerLink="/professional-form" class="btn btn-primary">Novo</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome </th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Ativo</th>
+                    <th scope="col">Remover</th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"><input class="form-control" placeholder="Filtrar pelo nome" [(ngModel)]="filter" (keyup)="filterName()"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let professional of professionalPage.content">
+                    <th scope="row">{{professional.id}}</th>
+                    <td><a routerLink="/professional-form/{{professional.id}}">{{professional.name}}</a> </td>
+                    <td>{{professional.phone}}</td>
+                    <td>{{professional.active | active}}</td>
+                    <td (click)="deleteProfessional(professional, modalConfirm)">
+                        <img src="assets/svg/trash3-fill.svg" width="20" height="20" alt="next">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="professionalPage.numberOfElements" [(page)]="page" [boundaryLinks]="true" (pageChange)="pageChange()"/>
+    </div>
+</div>
+
+<app-modal #modalConfirm [title]="'Deseja remover o profissional?'">
+    <ng-container *ngIf="selectedProfessional">
+        Nome: <span class="fw-bold me-1">{{selectedProfessional.name}}</span>
+    </ng-container>
+</app-modal>
