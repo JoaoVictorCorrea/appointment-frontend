@@ -31,7 +31,7 @@ export class ProfessionalFormPageComponent implements OnInit {
       name: ['', Validators.required],
       phone: ['', Validators.required],
       active: [''],
-      areaId: ['', Validators.required]
+      area: ['', Validators.required]
     });
   }
 
@@ -99,5 +99,5 @@ export class ProfessionalFormPageComponent implements OnInit {
   get cfName() {return this.professionalForm.get("name")}
   get cfPhone() { return this.professionalForm.get("phone") }
   get cfActive() { return this.professionalForm.get("active") }
-  get cfAreaId() {return this.professionalForm.get("areaId")}
+  get cfArea() {return this.professionalForm.get("area")}
 }

@@ -1,27 +1,29 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Client } from '../models/client';
+import { environment } from 'src/environments/environment';
+import { Page } from '../models/page';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
 
-  baseUrl = "http://localhost:3000/clients"
+  baseUrl = environment.baseUrl + "/clients"
 
   constructor(private http: HttpClient) { }
 
-  getClientsPage(clientNameFilter: string, page: number): Observable<HttpResponse<Client[]>>{
+  getClientsPage(clientNameFilter: string, page: number): Observable<Page<Client>>{
     let url = `${this.baseUrl}?name_like=${clientNameFilter}&_page=${page}&_limit=10&_sort=name`;
 
-    return this.http.get<Client[]>(url, {observe: 'response'});
+    return this.http.get<Page<Client>>(url);
   }
 
-  getClientsWithNameContaining(clientNameFilter: string): Observable<Client[]>{
+  getClientsWithNameContaining(clientNameFilter: string): Observable<Page<Client>>{
     let url = `${this.baseUrl}?name_like=${clientNameFilter}&_limit=10`;
 
-    return this.http.get<Client[]>(url);
+    return this.http.get<Page<Client>>(url);
   }
 
   deleteClient(client: Client): Observable<void> {

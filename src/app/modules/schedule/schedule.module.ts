@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { ScheduleRoutingModule } from './schedule-routing.module';
 import { TodayAppointmentsPageComponent } from './pages/today-appointments-page/today-appointments-page.component';
@@ -32,6 +32,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ReactiveFormsModule,
     NgbModule,
     SharedModule
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class ScheduleModule { }

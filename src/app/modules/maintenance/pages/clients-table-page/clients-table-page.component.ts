@@ -28,8 +28,7 @@ export class ClientsTablePageComponent implements OnInit {
   loadClients() {
     this.clientService.getClientsPage(this.filter, this.page).subscribe({
       next: response => {
-        this.clientPage.content = response.body;
-        this.clientPage.numberOfElements = parseInt(response.headers.get("X-Total-Count") || "0");
+        this.clientPage = response;
       }
     });
   }
