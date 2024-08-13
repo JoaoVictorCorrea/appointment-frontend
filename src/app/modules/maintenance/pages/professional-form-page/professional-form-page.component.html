@@ -46,13 +46,13 @@
                         <div class="col-6">
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Escolha uma área: </label>
-                                <select class="form-select" aria-label="Selecione uma área" formControlName="areaId">
+                                <select class="form-select" aria-label="Selecione uma área" formControlName="area">
                                     <option *ngFor="let area of areas" [ngValue]="area.id">
                                         {{area.name}}
                                     </option>
                                 </select>
                                 <div *ngIf="ngProfessionalForm.submitted" class="text-start">
-                                    <small *ngIf="cfAreaId?.errors?.['required']" class="form-text text-danger"><sup>*</sup>Selecione a Área do Profissional!</small>
+                                    <small *ngIf="cfArea?.errors?.['required']" class="form-text text-danger"><sup>*</sup>Selecione a Área do Profissional!</small>
                                 </div>
                             </div>
                         </div>

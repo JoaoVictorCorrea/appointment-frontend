@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable, debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, filter, map, switchMap } from 'rxjs';
 import { AppointmentType } from 'src/app/core/models/appointment-type';
 import { Area } from 'src/app/core/models/area';
 import { Client } from 'src/app/core/models/client';
@@ -95,7 +95,8 @@ export class CreateAppointmentPageComponent implements OnInit {
 			debounceTime(200),
       distinctUntilChanged(),
       filter(term => term.length >= 2),
-			switchMap(term => this.clientService.getClientsWithNameContaining(term))
+      switchMap(term => this.clientService.getClientsWithNameContaining(term)),
+      map(page => page.content || [])
 		);
   }
 
@@ -143,8 +144,8 @@ export class CreateAppointmentPageComponent implements OnInit {
               this.toastService.show("Agendamento Criado com sucesso!", { classname: "bg-success text-light" });
               this.clean();
             },
-            error: () => {
-              this.toastService.show("Erro ao Fazer o Agendamento!", { classname: "bg-danger text-light" })
+            error: (e) => {
+              this.toastService.show(e.error.message, { classname: "bg-danger text-light" })
             }
           })
         }

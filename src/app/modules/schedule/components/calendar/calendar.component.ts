@@ -112,6 +112,8 @@ export class CalendarComponent implements OnInit, OnChanges {
   }
 
   onNextMonth() {
+
+    this.availableDays = [];
     this.calendarMonth = new Date(this.calendarMonth);
     this.calendarMonth.setMonth(this.calendarMonth.getMonth() + 1);
     this.calendarMonth.setDate(1);
@@ -124,6 +126,7 @@ export class CalendarComponent implements OnInit, OnChanges {
 
   onPreviousMonth() {
     
+    this.availableDays = [];
     let previousDate = new Date(this.calendarMonth);
     previousDate.setMonth(this.calendarMonth.getMonth() - 1);
     previousDate.setDate(1);

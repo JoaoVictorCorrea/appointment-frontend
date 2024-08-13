@@ -1,23 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Professional } from '../models/professional';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Time } from 'src/app/modules/schedule/components/time/models/time';
+import { environment } from 'src/environments/environment';
+import { DatePipe } from '@angular/common';
+import { Page } from '../models/page';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfessionalService {
 
-  baseUrl = "http://localhost:3000/professionals"
+  baseUrl = environment.baseUrl + "/professionals"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private datePipe: DatePipe) { }
 
-  getProfessionals(professionalNameFilter: string, page: number): Observable<HttpResponse<Professional[]>>{
+  getProfessionals(professionalNameFilter: string, page: number): Observable<Page<Professional>>{
 
     let url = `${this.baseUrl}?name_like=${professionalNameFilter}&_page=${page}&_limit=10&_sort=name`;
     
-    return this.http.get<Professional[]>(url, {observe: 'response'});
+    return this.http.get<Page<Professional>>(url);
   }
 
   getProfessionalById(id: number): Observable<Professional>{
@@ -48,41 +51,13 @@ export class ProfessionalService {
 
     let url = `${this.baseUrl}/${professional.id}/availability-days?year=${year}&month=${month}`;
 
-    //TODO Replace this when backend available
-    //return this.http.get<number[]>(url);
-
-    return of([Math.floor(Math.random() * 20) + 1,
-               Math.floor(Math.random() * 20) + 1,
-               Math.floor(Math.random() * 20) + 1,
-               Math.floor(Math.random() * 20) + 1,
-               Math.floor(Math.random() * 20) + 1
-    ]);
+    return this.http.get<number[]>(url);
   }
 
   getAvailableTimes(professional: Professional, date: Date): Observable<Time[]>{
 
-    let url = `${this.baseUrl}/${professional.id}/availability-times?date=${date}`;
+    let url = `${this.baseUrl}/${professional.id}/availability-times?date=${this.datePipe.transform(date, 'yyyy-MM-dd')}`;
 
-    //TODO Replace this when backend available
-    //return this.http.get<Time[]>(url);
-
-    return of([
-      { startTime: "08:00:00", endTime: "08:30:00", available: Math.random() >= 0.5 },
-      { startTime: "08:30:00", endTime: "09:00:00", available: Math.random() >= 0.5 },
-      { startTime: "09:00:00", endTime: "09:30:00", available: Math.random() >= 0.5 },
-      { startTime: "09:30:00", endTime: "10:00:00", available: Math.random() >= 0.5 },
-      { startTime: "10:00:00", endTime: "10:30:00", available: Math.random() >= 0.5 },
-      { startTime: "10:30:00", endTime: "11:00:00", available: Math.random() >= 0.5 },
-      { startTime: "11:00:00", endTime: "11:30:00", available: Math.random() >= 0.5 },
-      { startTime: "11:30:00", endTime: "12:00:00", available: Math.random() >= 0.5 },
-      { startTime: "14:00:00", endTime: "14:30:00", available: Math.random() >= 0.5 },
-      { startTime: "14:30:00", endTime: "15:00:00", available: Math.random() >= 0.5 },
-      { startTime: "15:00:00", endTime: "15:30:00", available: Math.random() >= 0.5 },
-      { startTime: "15:30:00", endTime: "16:00:00", available: Math.random() >= 0.5 },
-      { startTime: "16:00:00", endTime: "16:30:00", available: Math.random() >= 0.5 },
-      { startTime: "16:30:00", endTime: "17:00:00", available: Math.random() >= 0.5 },
-      { startTime: "17:00:00", endTime: "17:30:00", available: Math.random() >= 0.5 },
-      { startTime: "17:30:00", endTime: "18:00:00", available: Math.random() >= 0.5 }
-    ]);
+    return this.http.get<Time[]>(url);
   }
 }

@@ -28,8 +28,7 @@ export class ProfessionalsTablePageComponent implements OnInit {
   loadProfessionals() {
     this.professionalService.getProfessionals(this.filter, this.page).subscribe({
       next: response => {
-        this.professionalPage.content = response.body;
-        this.professionalPage.numberOfElements = parseInt(response.headers.get("X-Total-Count") || "0");
+        this.professionalPage = response;
       }
     });
   }

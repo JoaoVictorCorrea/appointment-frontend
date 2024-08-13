@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Area } from '../models/area';
 import { Observable } from 'rxjs';
 import { Professional } from '../models/professional';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AreaService {
 
-  baseUrl = "http://localhost:3000/areas";
+  baseUrl = environment.baseUrl + "/areas";
 
   constructor(private http: HttpClient) { }
 
