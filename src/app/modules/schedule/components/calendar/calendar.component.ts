@@ -9,7 +9,7 @@ import { Day } from './models/day';
 export class CalendarComponent implements OnInit, OnChanges {
 
   @Input()
-  calendarMonth !: Date;
+  calendarMonth : Date = new Date();
 
   @Input()
   availableDays: number[] = [];

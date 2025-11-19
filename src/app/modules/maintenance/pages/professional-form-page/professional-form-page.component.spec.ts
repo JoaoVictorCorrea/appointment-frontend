@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfessionalFormPageComponent } from './professional-form-page.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DatePipe } from '@angular/common';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('ProfessionalFormPageComponent', () => {
   let component: ProfessionalFormPageComponent;
@@ -8,7 +12,13 @@ describe('ProfessionalFormPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProfessionalFormPageComponent]
+      declarations: [ProfessionalFormPageComponent],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        ReactiveFormsModule
+      ],
+      providers: [DatePipe]
     });
     fixture = TestBed.createComponent(ProfessionalFormPageComponent);
     component = fixture.componentInstance;

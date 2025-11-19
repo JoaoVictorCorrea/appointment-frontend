@@ -8,7 +8,7 @@
                 <div class="col-8 m-auto">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome: </label>
-                        <input type="name" class="form-control" id="name" placeholder="Nome" formControlName="name">
+                        <input type="text" class="form-control" id="name" placeholder="Nome" formControlName="name">
                         <div *ngIf="ngClientForm.submitted" class="text-start">
                             <small *ngIf="cfName?.errors?.['required']" class="form-text text-danger"><sup>*</sup>Nome obrigatório</small>
                         </div>
@@ -31,6 +31,10 @@
                                 <div *ngIf="ngClientForm.submitted" class="text-start">
                                     <small *ngIf="cfDateOfBirth?.errors?.['required']" class="form-text text-danger"><sup>*</sup>Data de nascimento obrigatória</small>
                                 </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="comments" class="form-label">Comentários:</label>
+                                <input type="text" class="form-control" id="comments" placeholder="Comentários" formControlName="comments">
                             </div>
                         </div>
                     </div>

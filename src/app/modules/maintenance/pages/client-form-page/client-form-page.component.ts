@@ -24,7 +24,8 @@ export class ClientFormPageComponent implements OnInit {
       id: [''],
       name: ['', Validators.required],
       phone: ['', Validators.required],
-      dateOfBirth: ['', Validators.required]
+      dateOfBirth: ['', Validators.required],
+      comments: ['']
     });
   }
 

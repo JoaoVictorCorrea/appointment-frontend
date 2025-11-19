@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormCreateAppointmentComponent } from './form-create-appointment.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 
 describe('FormCreateAppointmentComponent', () => {
   let component: FormCreateAppointmentComponent;
@@ -8,7 +10,11 @@ describe('FormCreateAppointmentComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FormCreateAppointmentComponent]
+      declarations: [FormCreateAppointmentComponent],
+      imports: [
+        ReactiveFormsModule,
+        NgbTypeahead
+      ]
     });
     fixture = TestBed.createComponent(FormCreateAppointmentComponent);
     component = fixture.componentInstance;
